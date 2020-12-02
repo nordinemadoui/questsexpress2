@@ -23,18 +23,18 @@ app.get("/", (req, res) => {
 });
 
 
-app.get("/api/movies", (request, response) => {
-    ("SELECT * from movies")
-  });
-
-  connection.query("SELECT * from movies", (err, results) => {
+app.get("/api/movies", (req, res) => {
+  connection.query("SELECT * from movies", 
+  (err, results) => {
     if (err) {
       res.status(500).send("Error retrieving data");
     } else {
       res.status(200).json(results);
     }
+  }
+  )
   });
-
+  
   app.get("/api/movies/:id", (req, res) => {
     const movie = movies.find((movie) => {
       return movie.id === Number(req.params.id);
